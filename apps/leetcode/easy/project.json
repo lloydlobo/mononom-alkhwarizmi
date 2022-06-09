@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/leetcode/easy/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/leetcode/easy",
+        "main": "apps/leetcode/easy/src/main.ts",
+        "tsConfig": "apps/leetcode/easy/tsconfig.app.json",
+        "assets": ["apps/leetcode/easy/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/leetcode/easy/src/environments/environment.ts",
+              "with": "apps/leetcode/easy/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "leetcode-easy:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/leetcode/easy/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/leetcode/easy"],
+      "options": {
+        "jestConfig": "apps/leetcode/easy/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["leetcode", "algorithms", "algorithm"]
+}
