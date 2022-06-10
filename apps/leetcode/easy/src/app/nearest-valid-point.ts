@@ -43,6 +43,7 @@ export function nearestValidPoint(
   let D = Number.MAX_VALUE;
   for (let i = 0; i < n; i += 1) {
     if (points[i][0] === x || points[i][1] === y) {
+      console.log(`points: ${points[i]}`);
       const manD = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
       if (manD < D) {
         index = i;
