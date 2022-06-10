@@ -30,8 +30,10 @@ export function nearestValidPoint(
   y: number,
   points: number[][]
 ): number {
-  const shortestDistance = getManhattanDistance(x, y, points);
-  return shortestDistance;
+  const validityChecker = invalidPointChecker(x, y, points);
+
+  if (!validityChecker) return -1;
+  return getManhattanDistance(x, y, points);
 }
 
 export function constraintsPoints(points: number[][], i: number) {
@@ -53,34 +55,99 @@ export function getManhattanDistance(
 ) {
   const distanceArray = [];
   const { greaterEquals1, lesserEquals104 } = constraintsX1Y1(x1, y1, points);
+  const pointsXAxisArray = [];
 
   if (greaterEquals1 && lesserEquals104) {
     for (let i = 0; i < points.length; i += 1) {
-      const { pGreaterEquals1, pLesserEquals104 } = constraintsPoints( points, i); // prettier-ignore
+      const { pGreaterEquals1, pLesserEquals104 } = constraintsPoints(points, i); // prettier-ignore
+
       if (points[i].length === 2 && pGreaterEquals1 && pLesserEquals104) {
+        pointsXAxisArray.push(points[i][0]);
         const manhattanDistance =
           Math.abs(x1 - points[i][0]) + Math.abs(y1 - points[i][1]);
         distanceArray.push(manhattanDistance);
       }
     }
   }
-  return nearestValidPointPlusIndex(distanceArray);
+  console.log('🚀 ~ l72 ~ pointsXAxisArray', pointsXAxisArray);
+  console.log('🚀 ~ getManhattanDistance ~ distanceArray', distanceArray);
+  return nearestValidPointPlusIndex(distanceArray, pointsXAxisArray);
 }
 
-export function nearestValidPointPlusIndex(arrayDistance: number[]) {
+//  A point is valid if it shares the same x-coordinate or the same y-coordinate as your location.
+export function nearestValidPointPlusIndex(
+  distanceArray: number[],
+  pointsXAxisArray: number[]
+) {
   const pointsIndexes = [];
   const distanceCloneArray = [];
-  arrayDistance.forEach((val, index): number => {
+  let pointIndexXAxisDistanceArray = [];
+  distanceArray.forEach((val, index): number => {
     pointsIndexes.push(index);
     distanceCloneArray.push(val);
+    console.log(pointsXAxisArray);
+    pointIndexXAxisDistanceArray = pointsXAxisArray.map((item, i) => [
+      item,
+      distanceArray[i],
+    ]);
     return val;
   });
+
+  console.log(
+    '🚀 ~ pointIndexXAxisDistanceArray',
+    pointIndexXAxisDistanceArray
+  ); // [ [ 1, 4 ], [ 6, 2 ], [ 1, 8 ], [ 3, 2 ] ]
+  // now compare it with x from currentLocation, x = 5
+
+  console.log('🚀 ~ l91 ~pointsXAxisArray', pointsXAxisArray);
+  console.log(distanceCloneArray);
 
   const concatPointIndexArray = distanceCloneArray.map((item, i) => [
     item,
     pointsIndexes[i],
   ]);
+  console.log('🚀 ~ concatPointIndexArray', concatPointIndexArray);
   const sortConcatArray = concatPointIndexArray.sort();
-
+  const nearestPoint = sortConcatArray[0];
+  console.log({ nearestPoint });
+  // if its a negative distance the return the higher index of duplicate values
   return sortConcatArray[0][1];
 }
+
+/*
+Input: x = 3, y = 4, points = [[2,3]]
+Output: -1
+Explanation: There are no valid points.
+*/
+export function invalidPointChecker(x, y, points) {
+  const invalidPoints = filterPointsIfItIncludesX1OrY1(x, y, points);
+  if (invalidPoints === true) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+export function filterPointsIfItIncludesX1OrY1(
+  x1: number,
+  y1: number,
+  points: number[][]
+) {
+  const filterPoints = [...points].filter(
+    (point) => point[0] === x1 || point[1] === y1
+  );
+  if (filterPoints.length === 0) {
+    return true;
+  } else {
+    return filterPoints;
+  }
+}
+
+// let shortestIndex = -1;
+// for (let i = 0; i < points.length; i++) {
+//   const distance = getManhattanDistance(x, y, [points[i]]);
+//   if (distance < shortestDistance) {
+//     shortestDistance = distance;
+//     shortestIndex = i;
+//   }
+// }
