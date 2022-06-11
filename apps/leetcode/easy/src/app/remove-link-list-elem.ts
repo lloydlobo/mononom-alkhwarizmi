@@ -36,68 +36,30 @@ export class ListNode {
     this.next = next === undefined ? null : next;
   }
 }
+
+/** removeElements(head, val)
+ * Remove all elements from a linked list of integers that have value val.
+ * @param head * ListNode
+ * @param val * number
+ * @returns ListNode | null
+ * @description * Given a linked list and a value, remove all instances of that value in the linked list.
+ * Remove all elements from a linked list of integers that have value val.
+ * @performance Runtime: 92 ms, faster than 87.27% of TypeScript online submissions for Remove Linked List Elements.
+ * @Memory Memory Usage: 47.4 MB, less than 76.03% of TypeScript online submissions for Remove Linked List Elements.
+ * @example * Input: 1->2->6->3->4->5->6, val = 6 => Output: 1->2->3->4->5
+ */
 export function removeElements(
   head: ListNode | null,
   val: number
 ): ListNode | null {
-  let next: ListNode | null;
-  ({ val, next } = head);
-
-  console.log('\nremove-link-list-element.ts\n........\n\n', { val, next });
-  if (next === null) {
-    return null;
-  } else {
-    for (let i = 0; i < val; i += 1) {
-      console.log({ i, val });
+  while (head && head.val == val) head = head.next;
+  let curr = head;
+  while (curr && curr.next) {
+    if (curr.next.val === val) {
+      curr.next = curr.next.next;
+    } else {
+      curr = curr.next;
     }
-    return head;
   }
+  return head;
 }
-
-/*
-[1,2,6,3,4,5,6]
-6
-*/
-
-/*
-{
-  val: 1,
-  next: ListNode { val: 2, next: ListNode { val: 6, next: [ListNode] } }
-}
-object
-{ i: 0, val: 1 }
-{ i: 1, val: 1 }
-{ i: 2, val: 1 }
-{ i: 3, val: 1 }
-{ i: 4, val: 1 }
-{ i: 5, val: 1 }
-{ i: 6, val: 1 }
-
-const nextJSON = {
-  val: 2,
-  next: ListNode {
-    val: 6, next: ListNode { val: 3, next: [ListNode] } }
-}
-object
-{ i: 0, val: 1 }
-{ i: 1, val: 1 }
-{ i: 2, val: 1 }
-{ i: 3, val: 1 }
-{ i: 4, val: 1 }
-{ i: 5, val: 1 }
-{ i: 6, val: 1 }
-
-
-*/
-/**
- * @param {ListNode} head
- * @param {number} val
- * @return {ListNode}
- * @description: head is an object of class ListNode
- * @description: val is a number
- * @description: return an object of class ListNode
- * @description: remove the node with value val
- * @description: if the node is the first node, return the next node
- * @description: if the node is the last node, return null
- * @description: if the node is in the middle, return the next node
- * */
