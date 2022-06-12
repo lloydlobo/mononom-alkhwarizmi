@@ -1,7 +1,6 @@
 // region:      --- imports ---
 
-import { ListNode, removeElements } from './app';
-
+import { ListNode, removeElements, trimMean } from './app';
 // import { nearestValidPoint } from './app';
 
 // endregion:   --- imports ---
@@ -15,20 +14,7 @@ function main() {
   const heads: ListNode = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))); // prettier-ignore
   const removedLinkElem = removeElements(heads, 6);
   console.log(removedLinkElem);
-  const spreadObject = { ...removedLinkElem };
-  console.log(spreadObject);
-  for (let key in spreadObject) {
-    console.log({ i: key, val: spreadObject[key] });
-    let current = removedLinkElem;
-    while (current && current.next) {
-      if (current.next.val === spreadObject[key]) {
-        current.next = current.next.next;
-      } else {
-        current = current.next;
-      }
-    }
-    console.log('hi', removedLinkElem, current);
-  }
+  console.log(trimMean([1, 2, 3, 4, 5]));
   // console.clear();
   console.log(`Gloria In Excelsis Deo!`);
 }
