@@ -105,3 +105,164 @@ export function findNumOneLiner(nums: number[]): number {
     .split(',')
     .filter((w) => w.length % 2 == 0).length;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// @brief Find the number of even digits in a number.
+/// @file FindNumEvenDigit.test.ts
+/// @author somebody that i used to know :)
+/// @date 2020-08-05
+/// @see - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
+///
+///////////////////////////////////////////////////////////////////////////////
+
+export function inRange(a: number, b: number, x: number): boolean {
+  return x > a && x < b;
+}
+
+/** findEvenNums
+ * @title Find Number of Even Digits in an Array
+ * @param nums: number[]
+ * @returns number: number
+ *
+ * @arguments
+ * - nums: number[]
+ *
+ * @example
+ * findEvenNums([12,345,2,6,7896]) // 2
+ * findEvenNums([12,345,2,6,7896,1234]) // 3
+ *
+ * @functions
+ * - hasEvenDigits = (n: number): boolean
+ * - findNumbers = (nums: number[]): number
+ *
+ * @solution
+ * 1. Filter the array to only include numbers with an even number of digits
+ * 2. Declare a function hasEvenDigits(n: number): boolean that returns true if the number has an even number of digits.
+ * 3. Declare a function isValid(nums: number[]): boolean that returns true if the number in 3 areas:
+ *  - 9 < numbers < 100 have even number of digits,
+ *  - 100 < numbers < 1000 have even number of digits,
+ *  - Math.pow(10, 5)
+ * 4. Return the length of the filtered array.
+ * 5. Profit?
+ *
+ * @sources
+ * - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
+ */
+export function findEvenNum(nums: number[]): number {
+  const hasEvenDigits = (x: number, y: number, num: number) =>
+    num > x && num < y;
+
+  const isValid = (num: number): boolean =>
+    hasEvenDigits(9, 100, num) ||
+    hasEvenDigits(999, 10000, num) ||
+    num === Math.pow(10, 5);
+
+  return nums.filter((num: number): boolean => isValid(num)).length as number;
+}
+
+/** findNumbers
+ *
+ * @example
+ * findNumbers5,2,6,7896]) // 2
+ * findNumbers5,2,6,7896,1234]) // 3
+ *
+ * @functions
+ * - hasEvenDigits = (n: number): boolean
+ * - findNumbers = (nums: number[]): number
+ *
+ * @solution
+ * 1. Filter the array to only include numbers with an even number of digits
+ * 2. Declare a function hasEvenDigits(n: number): boolean that
+      returns rue if the   number has an even number of digits.
+ * 3. Declare a function isValid(nums: number[]): boolean that
+      returns true if the number in 3 areas:
+ *  - 9 < numbers < 100 have even number of digits,
+ *  - 100 < numbers < 1000 have even number of digits,
+ *  - number === 100000.
+ * 4. Return the length of the filtered array.
+ * 5. Profit?
+ *
+ */
+// const isEven = (x: number, y: number, num: number) => num > x && num < y;
+
+// const isTrue = (num: number): boolean =>
+//   isEven(9, 100, num) || isEven(999, 10000, num) || num === 100000;
+
+// const findNumbers = (nums: number[]): number =>
+//   nums.filter((num: number): boolean => isTrue(num)).length as number;
+
+///////////////////////////////////////////////////////////////////////////////
+/// findNum
+///
+/// @brief Find the number of even digits in a number.
+/// Runtime: 93 ms
+/// Memory Usage: 44.3 MB
+///
+///////////////////////////////////////////////////////////////////////////////
+
+export const isEven = (x: number, y: number, num: number): boolean =>
+  num > x && num < y;
+
+export const findNum = (nums: number[]): number =>
+  nums.filter(
+    (num: number): boolean =>
+      isEven(9, 100, num) || isEven(999, 10000, num) || num === 100000
+  ).length;
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// findNumWhile
+///
+///////////////////////////////////////////////////////////////////////////////
+
+export function findNumWhile(nums: number[]): number {
+  if (nums && nums.length > 0) {
+    let evenDig = 0;
+
+    nums.forEach((num: number): void => {
+      let i = 0;
+      while (num > 0) {
+        const tallyNum = (): number => (num - (num % 10)) / 10;
+        num = tallyNum();
+        i++;
+      }
+      if (i % 2 === 0) {
+        evenDig++;
+      }
+    });
+    return evenDig;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// findNumLog
+///
+/// Runtime: 87 ms
+/// Memory Usage: 44.7 MB
+///
+///////////////////////////////////////////////////////////////////////////////
+
+// const findNumLog = (nums: number[]): number =>
+//   nums.filter((e) => !(1 & (Math.log10(e) + 1))).length;
+
+export function findNumLog(nums: number[]): number {
+  return nums.filter((e): boolean => !(1 & (Math.log10(e) + 1))).length;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// findNumForN
+///
+/// Runtime: 110 ms
+/// Memory Usage: 44.8 MB
+///
+///////////////////////////////////////////////////////////////////////////////
+export function findNumForN(nums: number[]): number {
+  let indexEven = 0;
+  for (const n of nums) {
+    if (n.toString().length % 2 === 0) indexEven++;
+  }
+  return indexEven;
+}
