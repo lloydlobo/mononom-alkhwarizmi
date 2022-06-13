@@ -21,7 +21,14 @@
 /// Tip: convert num to string before checking if the length is even.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-
+/**
+ * findNumOfNums
+ *
+ * Returns the number of even digits in a array of numbers.
+ *
+ * @param {number[]} nums: `number[]`
+ * @return {number} number of even digits: `number`
+ */
 export function findNumOfNums(nums: number[]): number {
   let count = 0;
   for (const num of nums) {
