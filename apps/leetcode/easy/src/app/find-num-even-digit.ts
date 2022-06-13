@@ -95,7 +95,7 @@ export function findNumOfNums(nums: number[]): number {
  * ***************************************************************************/
 export function findNumbers(nums: number[]): number {
   if (nums.length >= 1 && nums.length <= 500) {
-    let arrNumsString: string = nums.toString();
+    const arrNumsString: string = nums.toString();
     const evenDigit: string[] = arrNumsString
       .split(',')
       .filter((w) => w.length % 2 == 0);
@@ -116,7 +116,7 @@ export function findNumbers(nums: number[]): number {
 ///////////////////////////////////////////////////////////////////////////////
 
 export function findNumForLoop(nums: number[]): number {
-  let index: number = 0;
+  let index = 0;
   for (let i = 0; i < nums.length; i++) {
     const len: number = nums[i].toString().length;
     if (len % 2 === 0) {
