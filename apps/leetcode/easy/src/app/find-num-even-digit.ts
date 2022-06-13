@@ -88,7 +88,17 @@ export function findNumbers(nums: number[]): number {
 ///////////////////////////////////////////////////////////////////////////////
 
 // short unreadable code but works :)
-
+/** findNumOneLiner
+ * @title Find Number of Even Digits in an Array
+ * @param nums: number[]
+ * @returns number: number
+ *
+ * @sources https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+ *
+ * @performance
+ * - Runtime: 77 ms, faster than 79.77% of TypeScript online submissions for Find Numbers with Even Number of Digits.
+ * - Memory Usage: 45.7 MB, less than 9.34% of TypeScript online submissions for Find Numbers with Even Number of Digits.
+ */
 export function findNumOneLiner(nums: number[]): number {
   return nums
     .toString()
