@@ -11,6 +11,28 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////
+///
+/// findNumOfNums
+///
+/// Runtime: 69 ms, faster than 94.55% of TypeScript online submissions.
+/// Memory Usage: 45.4 MB, less than 20.23% of TypeScript online submissions.
+///
+/// Tip: convert num to string before checking if the length is even.
+///
+///////////////////////////////////////////////////////////////////////////////
+
+export function findNumOfNums(nums: number[]): number {
+  let count = 0;
+  for (const num of nums) {
+    const str = num.toString();
+    if (str.length % 2 === 0) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
 /** findNumbers
  * @title Find Number of Even Digits in an Array
  *
