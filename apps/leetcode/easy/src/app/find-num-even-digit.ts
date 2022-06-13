@@ -7,7 +7,6 @@
 /// @file FindNumEvenDigit.ts
 /// @brief Find the number of even digits in a number.
 /// @author somebody that i used to know :)
-/// @date 2020-08-05
 /// @see - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
 ///
 ///////////////////////////////////////////////////////////////////////////////
@@ -79,10 +78,30 @@ export function findNumbers(nums: number[]): number {
 
 ///////////////////////////////////////////////////////////////////////////////
 ///
+/// findNumForLoop
+///
+/// Runtime: 70 ms, faster than 94.16% of TypeScript online submissions for Find Numbers with Even Number of Digits.
+/// Memory Usage: 45.2 MB, less than 36.19% of TypeScript online submissions for Find Numbers with Even Number of Digits.Runtime: 110 ms
+///
+///
+///////////////////////////////////////////////////////////////////////////////
+
+export function findNumForLoop(nums: number[]): number {
+  let index: number = 0;
+  for (let i = 0; i < nums.length; i++) {
+    const len: number = nums[i].toString().length;
+    if (len % 2 === 0) {
+      index += 1;
+    }
+  }
+  return index;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///
 /// @brief Find the number of even digits in a number.
 /// @file FindNumEvenDigit.test.ts
 /// @author somebody that i used to know :)
-/// @date 2020-08-05
 /// @see - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
 ///
 ///////////////////////////////////////////////////////////////////////////////
@@ -111,7 +130,6 @@ export function findNumOneLiner(nums: number[]): number {
 /// @brief Find the number of even digits in a number.
 /// @file FindNumEvenDigit.test.ts
 /// @author somebody that i used to know :)
-/// @date 2020-08-05
 /// @see - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
 ///
 ///////////////////////////////////////////////////////////////////////////////
