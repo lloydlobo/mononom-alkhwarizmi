@@ -1,5 +1,5 @@
+// find-num-even-digit.ts
 // cspell:disableCompoundWords cspell:disable
-
 ///////////////////////////////////////////////////////////////////////////////
 ///
 /// findNumbers(nums: number[]): number[]
@@ -75,4 +75,23 @@ export function findNumbers(nums: number[]): number {
   } else {
     return null;
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// @brief Find the number of even digits in a number.
+/// @file FindNumEvenDigit.test.ts
+/// @author somebody that i used to know :)
+/// @date 2020-08-05
+/// @see - [Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
+///
+///////////////////////////////////////////////////////////////////////////////
+
+// short unreadable code but works :)
+
+export function findNumOneLiner(nums: number[]): number {
+  return nums
+    .toString()
+    .split(',')
+    .filter((w) => w.length % 2 == 0).length;
 }

@@ -1,6 +1,12 @@
 // region:      --- imports ---
 
-import { findNumbers, ListNode, removeElements, trimMean } from './app';
+import {
+  findNumbers,
+  findNumOneLiner,
+  ListNode,
+  removeElements,
+  trimMean,
+} from './app';
 // import { nearestValidPoint } from './app';
 
 // endregion:   --- imports ---
@@ -9,6 +15,7 @@ import { findNumbers, ListNode, removeElements, trimMean } from './app';
 
 function main() {
   console.log(findNumbers([12, 345, 2, 6, 7896]));
+  console.log(findNumOneLiner([12, 345, 2, 6, 7896, 1234]));
   // findNearestValidPoint();
   // console.log('twoSum', twoSum([2, 7, 11, 15], 9)); // [0, 1] console.log('twoSum', twoSum([3, 2, 4], 6)); // [1, 2] console.log('twoSum', twoSum([3, 3], 6)); // [0, 1] console.log('twoSum', twoSum([3, 2, 4, 8, 12, 32], 20)); // [3, 4] console.log('twoSum', twoSum([3, 2, 4, 8, 12, 32], 34)); // [1, 5]
   // console.log('twoSumRecursive', twoSumRecursive([2, 7, 11, 15], 9)); // [0, 1]
