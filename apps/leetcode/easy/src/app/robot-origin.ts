@@ -6,9 +6,6 @@
  * Runtime: 99 ms, faster than 63.46% of TypeScript online submissions for Robot Return to Origin.
  * Memory Usage: 46.1 MB, less than 42.31% of TypeScript online submissions for Robot Return to Origin.
  *
- * @param {number} x
- * @param {number} y
- *
  * @param moves : string
  * @returns boolean
  */
@@ -25,8 +22,44 @@ export function judgeCircle(moves: string): boolean {
       xy[0] -= 1;
     }
   }
-  return xy[0] === 0 && xy[1] === 0;
+  return (xy[0] === 0 && xy[1] === 0) as boolean;
 }
+
+
+
+/*
+Line 9, Char 12: the type `std::string::String` cannot be indexed by `{integer}` (solution.rs)
+   |
+9 |         if moves[i] == "U" {
+   |            ^^^^^^^^ `std::string::String` cannot be indexed by `{integer}`
+   |
+   = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
+Line 11, Char 19: the type `std::string::String` cannot be indexed by `{integer}` (solution.rs)
+   |
+11 |         } else if moves[i] == "R" {
+   |                   ^^^^^^^^ `std::string::String` cannot be indexed by `{integer}`
+   |
+   = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
+Line 13, Char 19: the type `std::string::String` cannot be indexed by `{integer}` (solution.rs)
+   |
+13 |         } else if moves[i] == "D" {
+   |                   ^^^^^^^^ `std::string::String` cannot be indexed by `{integer}`
+   |
+   = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
+Line 15, Char 19: the type `std::string::String` cannot be indexed by `{integer}` (solution.rs)
+   |
+15 |         } else if moves[i] == "L" {
+   |                   ^^^^^^^^ `std::string::String` cannot be indexed by `{integer}`
+   |
+   = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `prog` due to 4 previous errors
+mv: cannot stat '/leetcode/rust_compile/target/release/prog': No such file or directory
+
+
+*/
+
+
 
 export function judgeCircleBySum(moves: string): boolean {
   const movesStr = moves.split('');
