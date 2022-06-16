@@ -1,0 +1,52 @@
+{
+  "$schema": "..\\..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "sourceRoot": "apps/iterraytion/sum-2d-array/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/iterraytion/sum-2d-array",
+        "main": "apps/iterraytion/sum-2d-array/src/main.ts",
+        "tsConfig": "apps/iterraytion/sum-2d-array/tsconfig.app.json",
+        "assets": ["apps/iterraytion/sum-2d-array/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/iterraytion/sum-2d-array/src/environments/environment.ts",
+              "with": "apps/iterraytion/sum-2d-array/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "iterraytion-sum-2d-array:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/iterraytion/sum-2d-array/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/iterraytion/sum-2d-array"],
+      "options": {
+        "jestConfig": "apps/iterraytion/sum-2d-array/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["iteration", "array", "matrix", "node", "math"]
+}
