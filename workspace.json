@@ -1,9 +1,9 @@
 {
-  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
-  "version": 2,
-  "projects": {
-    "alkhwarizm": "apps/alkhwarizm",
-    "iterraytion-sum-2d-array": "apps/iterraytion/sum-2d-array",
-    "leetcode-easy": "apps/leetcode/easy"
-  }
+    "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+    "version": 2,
+    "projects": {
+        "alkhwarizm": "apps/alkhwarizm",
+        "iterraytion-sum-2d-array": "apps/iterraytion/sum-2d-array",
+        "leetcode-easy": "apps/leetcode/easy"
+    }
 }
